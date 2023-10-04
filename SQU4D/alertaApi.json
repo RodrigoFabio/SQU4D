@@ -1,0 +1,66 @@
+{
+  "links": [
+    {
+      "rel": "self",
+      "uri": "https://sandboxapi.deere.com/platform/machines/123456/alerts?startDate=2020-05-06T19:15:11.000Z&endDate=2020-05-13T19:15:11.000Z"
+    }
+  ],
+  "total": 1,
+  "values": [
+    {
+      "@type": "DiagnosticTroubleCodeAlert",
+      "duration": {
+        "@type": "measurementAsInteger",
+        "valueAsInteger": "3",
+        "unit": "Seconds"
+      },
+      "occurrences": "1",
+      "engineHours": {
+        "@type": "EngineHours",
+        "reading": {
+          "@type": "measurementAsDouble",
+          "valueAsDouble": 668.25,
+          "unit": "Hours"
+        }
+      },
+      "machineLinearTime": 36951157,
+      "bus": "0",
+      "definition": {
+        "@type": "DiagnosticTroubleCodeAlertDefinition",
+        "suspectParameterName": "524019",
+        "failureModeIndicator": "31",
+        "bus": "0",
+        "sourceAddress": "140",
+        "threeLetterAcronym": "AIC",
+        "id": "1234567",
+        "description": "Other AIC 524019.31 Reverser lever left in incorrect position. - Return to park to attemptrecovery.",
+        "links": [
+          {
+            "@type": "Link",
+            "rel": "self",
+            "uri": "https://sandboxapi.deere.com/platform/api/alertTypes/diagnosticTroubleCodeAlert/definitions/1328105"
+          }
+        ]
+      },
+      "id": "123456789",
+      "time": "2020-05-13T19:15:11.000Z",
+      "location": {
+        "@type": "Point",
+        "lat": 41.123456,
+        "lon": -90.234567
+      },
+      "color": "BLUE",
+      "severity": "INFO",
+      "acknowledgementStatus": "N",
+      "ignored": false,
+      "invisible": false,
+      "links": [
+        {
+          "@type": "Link",
+          "rel": "machine",
+          "uri": "https://sandboxapi.deere.com/platform/machines/123456"
+        }
+      ]
+    }
+  ]
+}
