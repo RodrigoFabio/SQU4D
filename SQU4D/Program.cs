@@ -62,6 +62,8 @@ internal class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddScoped<UsuarioRepository>();
         builder.Services.AddScoped<UsuarioAppService>();
+        builder.Services.AddScoped<AlertRepository>();
+        builder.Services.AddScoped<AlertAppService>();
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         var app = builder.Build();

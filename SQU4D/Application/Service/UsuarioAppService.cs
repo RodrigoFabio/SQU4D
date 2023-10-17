@@ -6,12 +6,15 @@ using SQU4D.Domain.Interfaces.Service;
 
 namespace SQU4D.Application.Service;
 
-public class UsuarioAppService : IUsuarioService
+public class UsuarioAppService 
 {   private readonly UsuarioRepository _userRepository;
-    public UsuarioAppService(UsuarioRepository userRepository)
+    
+    public UsuarioAppService( UsuarioRepository usuarioRepository)
     {
-        _userRepository = userRepository;
+        
+        _userRepository = usuarioRepository;
     }
+
     public bool ValidarCredenciais(LoginUsuarioDTO loginUsuario)
     {
         if(loginUsuario != null || loginUsuario.Email != "" ) 

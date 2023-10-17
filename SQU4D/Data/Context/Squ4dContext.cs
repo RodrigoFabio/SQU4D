@@ -11,4 +11,10 @@ public class Squ4dContext : DbContext
     {
     }
         public DbSet<Usuario> Usuarios{ get; set; }
+        public DbSet<Alert> Alerts { get; set; }
+
+        public DbSet<Cliente> Clientes { get; set; }
+
+        public DbSet<Encaminhamento> Encaminhamentos { get; set; }
+        public DbSet<Veiculo> Veiculos { get; set; }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQU4D.Data.Context;
 
@@ -11,9 +12,11 @@ using SQU4D.Data.Context;
 namespace SQU4D.Migrations
 {
     [DbContext(typeof(Squ4dContext))]
-    partial class Squ4dContextModelSnapshot : ModelSnapshot
+    [Migration("20231015145735_atualizando")]
+    partial class atualizando
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,85 +135,9 @@ namespace SQU4D.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VeiculoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("VeiculoId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("VeiculoId1");
 
                     b.ToTable("Alerts");
-                });
-
-            modelBuilder.Entity("SQU4D.Data.Models.Cliente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("SQU4D.Data.Models.Encaminhamento", b =>
-                {
-                    b.Property<int>("IdEncaminhamento")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEncaminhamento"));
-
-                    b.Property<int>("AlertId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DataAlteracao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DataInclusao")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool?>("EncaminhamentoAtivo")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("IdEmpresa")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Motivo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrigemRetorno")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsuarioAlt")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UsuarioInc")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdEncaminhamento");
-
-                    b.HasIndex("AlertId");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("Encaminhamento");
                 });
 
             modelBuilder.Entity("SQU4D.Data.Models.Usuario", b =>
@@ -240,68 +167,6 @@ namespace SQU4D.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("SQU4D.Data.Models.Veiculo", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Chassi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("modelo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("Veiculos");
-                });
-
-            modelBuilder.Entity("SQU4D.Data.Models.Alert", b =>
-                {
-                    b.HasOne("SQU4D.Data.Models.Veiculo", "Veiculo")
-                        .WithMany()
-                        .HasForeignKey("VeiculoId1");
-
-                    b.Navigation("Veiculo");
-                });
-
-            modelBuilder.Entity("SQU4D.Data.Models.Encaminhamento", b =>
-                {
-                    b.HasOne("SQU4D.Data.Models.Alert", "Alert")
-                        .WithMany()
-                        .HasForeignKey("AlertId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SQU4D.Data.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Alert");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("SQU4D.Data.Models.Veiculo", b =>
-                {
-                    b.HasOne("SQU4D.Data.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 #pragma warning restore 612, 618
         }

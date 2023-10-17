@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQU4D.Data.Context;
 
@@ -11,9 +12,11 @@ using SQU4D.Data.Context;
 namespace SQU4D.Migrations
 {
     [DbContext(typeof(Squ4dContext))]
-    partial class Squ4dContextModelSnapshot : ModelSnapshot
+    [Migration("20231017215656_arrumandoTabelaVeiculo")]
+    partial class arrumandoTabelaVeiculo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
