@@ -8,7 +8,7 @@ public class AlertProfile : Profile
     public AlertProfile() 
     {
         CreateMap<AlertDTO, Alert>()
-            .ForMember(dest => dest.AlertApiId, opt => opt.MapFrom(src => src.id))
+            .ForMember(dest => dest.VeiculoId, opt => opt.MapFrom(src => src.id))
             .ForMember(dest => dest.DurationType, opt => opt.MapFrom(src => src.Duration.Type))
             .ForMember(dest => dest.DurationValue, opt => opt.MapFrom(src => src.Duration.ValueAsInteger))
             .ForMember(dest => dest.DurationUnit, opt => opt.MapFrom(src => src.Duration.Unit))

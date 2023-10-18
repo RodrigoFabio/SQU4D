@@ -59,6 +59,16 @@ public class AlertAppService
         return alert;
     }
 
+    public IEnumerable<Alert> BuscaAlertas([FromQuery] int skip = 0, [FromQuery] int take = 30)
+    {
+        //No lugar de retornar tudo o que tem armazenado, passamos os valores skip e take para definir um intervalo 
+        return _alertRepository.BuscaAlertas(skip, take);
+    }
 
+
+    public IEnumerable<Alert> FiltraAlertas(string cor, string severidade, DateTime data)
+    {
+        return _alertRepository.FiltraAlertas(cor, severidade, data);
+    }
 
 }

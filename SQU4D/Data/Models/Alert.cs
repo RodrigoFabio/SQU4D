@@ -7,7 +7,6 @@ namespace SQU4D.Data.Models
     {
         [Key]
         public int Id { get; set; }
-        public int AlertApiId { get; set; }
         public string? Type { get; set; }
         public string? DurationType { get; set; }
         public double DurationValue { get; set; }

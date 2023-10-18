@@ -22,4 +22,16 @@ public class AlertRepository
         _context.SaveChanges();
         return true;
     }
+
+    public IEnumerable<Alert> BuscaAlertas(int skip, int take)
+    {
+        return _context.Alerts.Skip(skip).Take(take);
+    }
+
+    public IEnumerable<Alert> FiltraAlertas(string cor, string severidade, DateTime data)
+    {
+        return _context.Alerts.Where(x => x.Color == cor && x.Severity == severidade && x.Time == data);
+    }
+
+    public Alert GetAlert(int id) { return _context.Alerts.FirstOrDefault(x => x.Id == id); }
 }

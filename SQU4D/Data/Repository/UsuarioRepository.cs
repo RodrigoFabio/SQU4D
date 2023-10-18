@@ -8,6 +8,8 @@ using SQU4D.Data.Models;
 using System.Data.SqlClient;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using FluentValidation.Results;
+using System.Security.Claims;
+
 namespace SQU4D.Data.Repository;
 
 public class UsuarioRepository
@@ -28,7 +30,7 @@ public class UsuarioRepository
         {
 
         _context.Usuarios.Add(usuario);
-        _context.SaveChanges();
+        _context.SaveChanges(); 
          return result;
         }catch (Exception ex) {
             result.Errors.Add(new ValidationFailure("", "Erro ao cadastrar usuário"));
@@ -51,6 +53,18 @@ public class UsuarioRepository
             result.Errors.Add(new ValidationFailure("Senha", "Senha incorreta"));
         }
         return result;
+    }
+
+    public string GetUser()
+    {
+        var claim = _context.Usuarios.Find(ClaimTypes.NameIdentifier);
+
+        if (claim != null)
+        {
+            return claim.ToString();
+        }
+
+        return null;
     }
     
 }
