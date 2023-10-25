@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Domain\Interfaces\Repository\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

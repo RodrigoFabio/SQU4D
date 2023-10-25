@@ -132,12 +132,9 @@ namespace SQU4D.Migrations
                     b.Property<int>("VeiculoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("VeiculoId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("VeiculoId1");
+                    b.HasIndex("VeiculoId");
 
                     b.ToTable("Alerts");
                 });
@@ -241,18 +238,26 @@ namespace SQU4D.Migrations
 
             modelBuilder.Entity("SQU4D.Data.Models.Veiculo", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Chassi")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<string>("modelo")
+                    b.Property<string>("Cor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modelo")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Placa")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -266,7 +271,9 @@ namespace SQU4D.Migrations
                 {
                     b.HasOne("SQU4D.Data.Models.Veiculo", "Veiculo")
                         .WithMany()
-                        .HasForeignKey("VeiculoId1");
+                        .HasForeignKey("VeiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Veiculo");
                 });

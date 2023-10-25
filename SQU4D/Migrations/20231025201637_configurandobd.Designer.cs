@@ -12,8 +12,8 @@ using SQU4D.Data.Context;
 namespace SQU4D.Migrations
 {
     [DbContext(typeof(Squ4dContext))]
-    [Migration("20231018185611_AtualizandoIDVeiculo")]
-    partial class AtualizandoIDVeiculo
+    [Migration("20231025201637_configurandobd")]
+    partial class configurandobd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -135,12 +135,9 @@ namespace SQU4D.Migrations
                     b.Property<int>("VeiculoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("VeiculoId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("VeiculoId1");
+                    b.HasIndex("VeiculoId");
 
                     b.ToTable("Alerts");
                 });
@@ -244,8 +241,11 @@ namespace SQU4D.Migrations
 
             modelBuilder.Entity("SQU4D.Data.Models.Veiculo", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Chassi")
                         .IsRequired()
@@ -254,7 +254,15 @@ namespace SQU4D.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<string>("modelo")
+                    b.Property<string>("Cor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Placa")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -269,7 +277,9 @@ namespace SQU4D.Migrations
                 {
                     b.HasOne("SQU4D.Data.Models.Veiculo", "Veiculo")
                         .WithMany()
-                        .HasForeignKey("VeiculoId1");
+                        .HasForeignKey("VeiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Veiculo");
                 });

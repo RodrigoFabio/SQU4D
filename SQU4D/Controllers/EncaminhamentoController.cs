@@ -16,9 +16,9 @@ public class EncaminhamentoController : ControllerBase
     }
 
     [HttpPost("Tratativa")]
-    public IActionResult PostTratativa([FromBody] int AlertaId)
+    public async Task<IActionResult> PostTratativa([FromBody] int AlertaId)
     {
-        if(_encaminhamentoService.PostSyonet(AlertaId)){
+        if(await _encaminhamentoService.PostSyonet(AlertaId)){
                   return Ok();
         }
         return BadRequest();

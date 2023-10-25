@@ -8,6 +8,6 @@ public class FiltroAlertaDTO
     public string? Severity { get; set; }
 
     public DateTime? DataInicial { get; set; }
-    public DateTime? DataFinal { get; set; };
+    public DateTime? DataFinal { get; set; }
 
 }
