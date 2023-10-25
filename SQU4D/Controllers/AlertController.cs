@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SQU4D.Application.Service;
+using SQU4D.Data.DTOs;
 using SQU4D.Data.Models;
+using SQU4D.Domain.Application.Service;
 using System.Text.Json;
 
 namespace SQU4D.Controllers;
@@ -18,7 +19,7 @@ public class AlertController: ControllerBase
     }
 
     [HttpGet("BuscaAlertas")]
-    public IActionResult BuscaAlertas([FromQuery] int skip = 0, [FromQuery] int take = 30)
+    public IActionResult BuscaAlertas([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
         var alerts = _alertService.BuscaAlertas(skip, take).ToArray();
         var json = JsonSerializer.Serialize(alerts);
@@ -26,9 +27,9 @@ public class AlertController: ControllerBase
     }
 
     [HttpGet("Filtro")]
-    public IActionResult FiltraAlertas([FromQuery] string cor, [FromQuery] string severidade, [FromQuery] DateTime data)
+    public async Task<IActionResult> FiltraAlertas([FromBody] FiltroAlertaDTO itensFiltro, [FromQuery] int page = 1, [FromQuery] int take = 10)
     {
-        var alerts = _alertService.FiltraAlertas(cor, severidade, data); 
+        var alerts = await _alertService.FiltraAlertas(itensFiltro, page, take); 
         var json = JsonSerializer.Serialize(alerts);    
         return Content(json, "application/json");
     }
@@ -45,12 +46,5 @@ public class AlertController: ControllerBase
         return BadRequest();
     }
 
-    [HttpPost("Tratativa")]
-    public IActionResult PostTratativa([FromBody] int AlertaId)
-    {
-
-        
-            return Ok();
-       
-    }
+   
 }

@@ -4,33 +4,34 @@ using SQU4D.Data.Models;
 using SQU4D.Data.Repository;
 using SQU4D.Domain.Interfaces.Service;
 
-namespace SQU4D.Application.Service;
+namespace SQU4D.Domain.Application.Service;
 
-public class UsuarioAppService 
-{   private readonly UsuarioRepository _userRepository;
-    
-    public UsuarioAppService( UsuarioRepository usuarioRepository)
+public class UsuarioAppService
+{
+    private readonly UsuarioRepository _userRepository;
+
+    public UsuarioAppService(UsuarioRepository usuarioRepository)
     {
-        
+
         _userRepository = usuarioRepository;
     }
 
     public bool ValidarCredenciais(LoginUsuarioDTO loginUsuario)
     {
-        if(loginUsuario != null || loginUsuario.Email != "" ) 
+        if (loginUsuario != null || loginUsuario.Email != "")
         {
             var result = _userRepository.ValidaCredenciaisUsuario(loginUsuario);
-            if(result.IsValid) { return true; }
+            if (result.IsValid) { return true; }
         }
         return false;
     }
 
     public bool CadastrarNovoUsuario(CadastroUsuarioDTO novoUsuario)
     {
-         novoUsuario.Senha = CriptografarSenha(novoUsuario.Senha);             
-         var result =_userRepository.CadastraNovoUsuario(novoUsuario);
-         if(!result.IsValid) { return true; }
-         return false;     
+        novoUsuario.Senha = CriptografarSenha(novoUsuario.Senha);
+        var result = _userRepository.CadastraNovoUsuario(novoUsuario);
+        if (!result.IsValid) { return true; }
+        return false;
     }
 
     public string CriptografarSenha(string senha)

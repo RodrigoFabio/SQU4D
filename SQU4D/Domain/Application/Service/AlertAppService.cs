@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Newtonsoft.Json;
+using SQU4D.Data.DTOs;
 using SQU4D.Data.Models;
 using SQU4D.Data.Repository;
 using System.Text.Json;
 
-namespace SQU4D.Application.Service;
+namespace SQU4D.Domain.Application.Service;
 
 public class AlertAppService
 {
     private readonly AlertRepository _alertRepository;
-    public AlertAppService(AlertRepository alertRepository) 
+    public AlertAppService(AlertRepository alertRepository)
     {
         _alertRepository = alertRepository;
     }
@@ -38,7 +39,8 @@ public class AlertAppService
         var linksArray = json.GetProperty("definition").GetProperty("links");
 
         if (linksArray.EnumerateArray().Any())
-        { Link link = new Link();
+        {
+            Link link = new Link();
             var firstLinkElement = linksArray.EnumerateArray().First();
             link.Type = firstLinkElement.GetProperty("@type").ToString();
             link.Rel = firstLinkElement.GetProperty("rel").ToString();
@@ -66,9 +68,9 @@ public class AlertAppService
     }
 
 
-    public IEnumerable<Alert> FiltraAlertas(string cor, string severidade, DateTime data)
+    public async Task<IEnumerable<Alert>> FiltraAlertas(FiltroAlertaDTO itensFiltro, int? page, int take)
     {
-        return _alertRepository.FiltraAlertas(cor, severidade, data);
+        return await _alertRepository.FiltraAlertas(itensFiltro, page, take);
     }
 
 }

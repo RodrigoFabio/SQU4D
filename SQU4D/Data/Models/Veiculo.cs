@@ -6,7 +6,7 @@ namespace SQU4D.Data.Models;
 public class Veiculo
 {
     [Key]
-    public string Id { get; set; }
+    public int Id { get; set; }
     public string modelo { get; set; }
     [ForeignKey("ClienteId")]
     public int ClienteId { get; set; }

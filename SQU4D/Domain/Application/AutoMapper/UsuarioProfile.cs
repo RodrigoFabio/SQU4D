@@ -2,7 +2,7 @@
 using SQU4D.Data.DTOs;
 using SQU4D.Data.Models;
 
-namespace SQU4D.Application.Profiles;
+namespace SQU4D.Domain.Application.AutoMapper;
 
 public class UsuarioProfile : Profile
 {

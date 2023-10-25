@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SQU4D.Application.Service;
 using SQU4D.Data.DTOs;
 using SQU4D.Data.Models;
+using SQU4D.Domain.Application.Service;
 using SQU4D.Domain.Interfaces.Service;
 using System.Text.Json;
 using System.Text.Json.Nodes;

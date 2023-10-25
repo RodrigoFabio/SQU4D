@@ -28,9 +28,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using SQU4D.Application.Service;
 using SQU4D.Data.Context;
 using SQU4D.Data.Repository;
+using SQU4D.Domain.Application.Service;
 using SQU4D.Domain.Interfaces.Service;
 using System.IO;
 

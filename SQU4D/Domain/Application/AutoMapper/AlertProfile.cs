@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using SQU4D.Data.Models;
 
-namespace SQU4D.Application.Profiles;
+namespace SQU4D.Domain.Application.AutoMapper;
 
 public class AlertProfile : Profile
 {
-    public AlertProfile() 
+    public AlertProfile()
     {
         CreateMap<AlertDTO, Alert>()
             .ForMember(dest => dest.VeiculoId, opt => opt.MapFrom(src => src.id))
@@ -36,4 +36,3 @@ public class AlertProfile : Profile
 
     }
 }
-          
