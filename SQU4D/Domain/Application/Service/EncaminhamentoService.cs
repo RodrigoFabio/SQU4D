@@ -78,11 +78,7 @@ public class EncaminhamentoService
                 dataProximaAcao = 0
             }
         };
-
-
         string json = JsonConvert.SerializeObject(jsonData);
-
-
 
         using (var httpClient = new HttpClient())
         {

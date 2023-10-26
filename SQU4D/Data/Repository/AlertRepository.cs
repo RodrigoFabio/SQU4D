@@ -37,6 +37,8 @@ public class AlertRepository
     {
         int numeroPagina = page ?? 1;
         var filtro = _context.Alerts
+                        .Skip((numeroPagina - 1) * take)
+                        .Take(take)
                         .Include(a => a.Veiculo)
                         .ThenInclude(v => v.Cliente)
                         .AsNoTracking();
